@@ -4,7 +4,7 @@ CFLAGS=		-Wall -Werror -Wextra
 
 NAME=		libftprintf.a
 
-SRCS=		ft_printf.c print_char.c
+SRCS=		ft_printf.c char_convert.c str_convert.c ptr_convert.c put_percent.c ft_itoa_base.c
 
 OBJS=		$(SRCS:.c=.o)
 
@@ -23,8 +23,8 @@ $(NAME): $(OBJS)
 	@echo "Printf Library Created"
 
 $(OBJS): $(SRCS) 
-	@$(CC) $(CFLAGS) -c $(SRCS)
-
+	@$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $(SRCS)
+	
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@rm -f $(OBJS) $(OBJS_LIBFT)

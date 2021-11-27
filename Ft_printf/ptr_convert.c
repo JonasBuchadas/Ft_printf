@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ptr_convert.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 11:33:17 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 14:00:11 by jocaetan         ###   ########.fr       */
+/*   Created: 2021/11/27 11:51:23 by jocaetan          #+#    #+#             */
+/*   Updated: 2021/11/27 14:18:47 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+int	ptr_convert(void *ptr)
+{
+	unsigned long	address;
+	char			*str;
 
-# define HEXBASE "0123456789abcdef" 
-
-int		ft_printf(const char *format, ...);
-int		char_convert(const char c);
-int		str_convert(const char *str);
-int		ptr_convert(void *ptr);
-char	*ft_itoa_base(unsigned long n, char *base);
-int		put_percent(void);
-
-#endif
+	address = (unsigned long) ptr;
+	str = ft_itoa_base(address, HEXBASE);
+	ft_putstr(str);
+	return (1);
+}

@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/18 11:33:17 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 14:00:11 by jocaetan         ###   ########.fr       */
+/*   Created: 2021/11/27 14:10:41 by jocaetan          #+#    #+#             */
+/*   Updated: 2021/11/27 14:17:58 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "libft.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+void	ft_putstr(const char *str)
+{
+	size_t	i;
 
-# define HEXBASE "0123456789abcdef" 
-
-int		ft_printf(const char *format, ...);
-int		char_convert(const char c);
-int		str_convert(const char *str);
-int		ptr_convert(void *ptr);
-char	*ft_itoa_base(unsigned long n, char *base);
-int		put_percent(void);
-
-#endif
+	i = -1;
+	while (str[++i])
+		ft_putchar(str[i]);
+}

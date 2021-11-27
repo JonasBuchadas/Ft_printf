@@ -6,14 +6,13 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:06:55 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/26 15:58:42 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/27 12:11:38 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-//int	printchar(const char c);
-int	print_placeholder(const char *ph, va_list arg);
+static int	print_placeholder(const char *ph, va_list arg);
 
 int	ft_printf(const char *format, ...)
 {
@@ -25,7 +24,7 @@ int	ft_printf(const char *format, ...)
 	while (*format)
 	{
 		if (*format == '%')
-			n += print_placeholder(format, arg);
+			n += print_placeholder(++format, arg);
 		else
 			n += write(1, format, 1);
 		format++;
@@ -34,12 +33,18 @@ int	ft_printf(const char *format, ...)
 	return (n);
 }
 
-int	print_placeholder(const char *ph, va_list arg)
+static int	print_placeholder(const char *ph, va_list arg)
 {
-	int	len;
+	int		len;
 
 	len = 0;
-	if (++(*ph) == 'c')
-		len += write(1, (va_arg(arg, int)), 1);
+	if (*ph == '%')
+		len += put_percent();
+	else if (*ph == 'c')
+		len += char_convert(va_arg(arg, int));
+	else if (*ph == 's')
+		len += str_convert(va_arg(arg, char *));
+	else if (*ph == 'p')
+		len += ptr_convert(va_arg(arg, void *));
 	return (len);
 }

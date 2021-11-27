@@ -6,7 +6,7 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/18 11:28:52 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/26 15:58:45 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/27 14:01:01 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,23 @@
 
 int	main(void)
 {
-	char	*str = "Hello World\n";
 	int 	n1;
 	int		n2;
+	char	c;
+	char	*str;
 
-	n1 = ft_printf(str);
-	n2 = printf("%s", str);
-	printf("N1: %i\tN2: %i\n", n1, n2);
+	c = 'A';
+	str = "World";
+	n1 = ft_printf("Hello World %c\n", c);
+	n2 = printf("Hello World %c\n", c);
+	n2 = printf("Hello %s\n", str);
+	n1 = ft_printf("Hello %s\n", str);
+	n2 = printf(" NULL %s NULL\n", NULL);
+	n1 = ft_printf(" NULL %s NULL\n", NULL);
+	printf("FT: %i\tC: %i\n", n1, n2);
+	n1 = ft_printf("Hello %%\n", str);
+	n2 = printf("Hello %p\n", str);
+	n1 = ft_printf("Hello %p\n", str);
 
 	return (1);
 }
