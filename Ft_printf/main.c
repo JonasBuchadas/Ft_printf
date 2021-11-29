@@ -32,6 +32,7 @@ int	main(void)
 	n1 = ft_printf("Hello %%\n", str);
 	n2 = printf("Hello %p\n", str);
 	n1 = ft_printf("Hello %p\n", str);
+	n2 = printf("Hello %p\n", 0);
 
 	return (1);
 }

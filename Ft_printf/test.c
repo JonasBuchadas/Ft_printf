@@ -23,4 +23,6 @@ int main(void)
 	printf("|||%05d|||\n", c);
 	printf("|||%-05d|||\n", c);
 	printf("|||%05X|||\n", c);
+	printf("|||%p|||\n", 0);
+	printf("|||%s|||\n", NULL);
 }

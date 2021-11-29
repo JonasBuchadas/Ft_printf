@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/27 13:42:41 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 14:02:33 by jocaetan         ###   ########.fr       */
+/*   Created: 2021/10/18 12:42:05 by jocaetan          #+#    #+#             */
+/*   Updated: 2021/10/28 10:56:47 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,78 +20,42 @@ integer received as an argument. Negative numbers must be handled.
 #include <stdlib.h>
 #include "libft.h"
 
-static int	base_check(char *base, size_t len);
-static char	*create_str(int n, size_t digits, char *base);
+static char	*create_str(unsigned int n, size_t digits);
 static void	ft_revtab(void *tab, size_t size);
 
-char	*ft_itoa_base(int n, char *base)
+char	*ft_uitoa(unsigned int n)
 {
-	size_t	digits;
-	int		n_dig;
-	char	*str;
-	size_t	baselen;
+	size_t			digits;
+	unsigned int	n_dig;
+	char			*str;
 
-	baselen = ft_strlen(base);
-	if (base_check(base, baselen) == 0 || baselen <= 1)
-		return (NULL);
 	digits = 1;
 	n_dig = n;
-	while (n_dig / baselen != 0)
+	while (n_dig / 10 != 0)
 	{
 		digits++;
-		n_dig /= baselen;
+		n_dig /= 10;
 	}
-	if (n < 0)
-		digits++;
-	str = create_str(n, digits, base);
+	str = create_str(n, digits);
 	return (str);
 }
 
-static int	base_check(char *base, size_t len)
-{
-	size_t	i;
-	size_t	j;
-
-	if (ft_strchr(base, '-') || ft_strchr(base, '+'))
-		return (0);
-	i = -1;
-	while (++i < len)
-	{
-		j = i + 1;
-		while (++j < len)
-		{
-			if (base[i] == base[j])
-				return (0);
-		}
-	}
-	return (1);
-}
-
-static char	*create_str(int n, size_t digits, char *base)
+static char	*create_str(unsigned int n, size_t digits)
 {
 	char			*str;
-	size_t			baselen;
 	size_t			i;
-	unsigned int	un;
 
-	if (n < 0)
-		un = n * (-1);
-	else
-		un = n;
 	str = (char *)malloc(sizeof(char) * digits + 1);
 	if (!str)
 		return (NULL);
 	i = -1;
-	if (un == 0)
+	if (n == 0)
 		str[++i] = '0';
-	baselen = ft_strlen(base);
-	while (un != 0)
+	while (n != 0)
 	{
-		str[++i] = base[un % baselen];
-		un /= baselen;
+		str[++i] = (n % 10) + 48;
+		n /= 10;
 	}
-	if (n < 0)
-		str[++i] = '-';
 	str[digits] = '\0';
 	ft_revtab(str, digits);
 	return (str);

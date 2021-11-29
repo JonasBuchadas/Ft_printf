@@ -13,16 +13,16 @@
 #include "ft_printf.h"
 #include "libft.h"
 
-int	str_convert(const char *str)
+int	str_convert(char *str)
 {
 	int		len;
-	size_t	i;
 
 	if (!str)
-		str = "(null)";
+	{
+		ft_putstr_fd("(null)", 1);
+		return (6);
+	}
 	len = ft_strlen(str);
-	i = -1;
-	while (str[++i])
-		ft_putchar_fd(str[i], 1);
+	ft_putstr_fd(str, 1);
 	return (len);
 }

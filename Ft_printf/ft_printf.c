@@ -46,5 +46,13 @@ static int	print_placeholder(const char *ph, va_list arg)
 		len += str_convert(va_arg(arg, char *));
 	else if (*ph == 'p')
 		len += ptr_convert(va_arg(arg, void *));
+	else if (*ph == 'd')
+		len += dec_convert(va_arg(arg, int));
+	else if (*ph == 'i')
+		len += int_convert(va_arg(arg, int));
+	else if (*ph == 'u')
+		len += udec_convert(va_arg(arg, unsigned int));
+	else if (*ph == 'x')
+		len += low_hex_convert(va_arg(arg, int));
 	return (len);
 }

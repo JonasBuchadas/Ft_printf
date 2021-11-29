@@ -4,11 +4,9 @@ CFLAGS=		-Wall -Werror -Wextra
 
 NAME=		libftprintf.a
 
-SRCS=		ft_printf.c char_convert.c str_convert.c ptr_convert.c put_percent.c ft_itoa_base.c
+SRCS=		ft_printf.c char_convert.c str_convert.c ptr_convert.c put_percent.c ft_ultoa_base.c dec_convert.c int_convert.c udec_convert.c ft_uitoa.c ft_itoa_base.c low_hex_convert.c
 
 OBJS=		$(SRCS:.c=.o)
-
-OBJS_LIBFT=	ft_putchar_fd.o
 
 LIBFT_DIR=	./libft
 
@@ -23,11 +21,11 @@ $(NAME): $(OBJS)
 	@echo "Printf Library Created"
 
 $(OBJS): $(SRCS) 
-	@$(CC) $(CFLAGS) -c -I$(LIBFT_DIR) $(SRCS)
+	@$(CC) $(CFLAGS) -c -I $(LIBFT_DIR) $(SRCS)
 	
 clean:
 	@make clean -C $(LIBFT_DIR)
-	@rm -f $(OBJS) $(OBJS_LIBFT)
+	@rm -f $(OBJS)
 	@echo "Object Files Removed"
 
 fclean: clean
