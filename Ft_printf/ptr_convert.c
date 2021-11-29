@@ -6,7 +6,7 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 11:51:23 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 14:18:47 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:21:14 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,8 @@ int	ptr_convert(void *ptr)
 	char			*prefix;
 	char			*str;
 
-	if (ptr == 0)
-	{
-		ft_putstr_fd("(nil)", 1);
-		return (5);
-	}
 	address = (unsigned long) ptr;
-	hex = ft_ultoa_base(address, HEXBASE);
+	hex = ft_ultoa_base(address, LOWER_HEXBASE);
 	prefix = "0x";
 	str = ft_strjoin(prefix, hex);
 	ft_putstr_fd(str, 1);

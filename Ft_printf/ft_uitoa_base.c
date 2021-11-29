@@ -6,7 +6,7 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 13:42:41 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 14:02:33 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:14:04 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ integer received as an argument. Negative numbers must be handled.
 #include "libft.h"
 
 static int	base_check(char *base, size_t len);
-static char	*create_str(int n, size_t digits, char *base);
+static char	*create_str(unsigned int n, size_t digits, char *base);
 static void	ft_revtab(void *tab, size_t size);
 
-char	*ft_itoa_base(int n, char *base)
+char	*ft_uitoa_base(unsigned int n, char *base)
 {
-	size_t	digits;
-	int		n_dig;
-	char	*str;
-	size_t	baselen;
+	size_t			digits;
+	unsigned int	n_dig;
+	char			*str;
+	size_t			baselen;
 
 	baselen = ft_strlen(base);
 	if (base_check(base, baselen) == 0 || baselen <= 1)
@@ -41,8 +41,6 @@ char	*ft_itoa_base(int n, char *base)
 		digits++;
 		n_dig /= baselen;
 	}
-	if (n < 0)
-		digits++;
 	str = create_str(n, digits, base);
 	return (str);
 }
@@ -67,31 +65,24 @@ static int	base_check(char *base, size_t len)
 	return (1);
 }
 
-static char	*create_str(int n, size_t digits, char *base)
+static char	*create_str(unsigned int n, size_t digits, char *base)
 {
-	char			*str;
-	size_t			baselen;
-	size_t			i;
-	unsigned int	un;
+	char	*str;
+	size_t	baselen;
+	size_t	i;
 
-	if (n < 0)
-		un = n * (-1);
-	else
-		un = n;
 	str = (char *)malloc(sizeof(char) * digits + 1);
 	if (!str)
 		return (NULL);
 	i = -1;
-	if (un == 0)
+	if (n == 0)
 		str[++i] = '0';
 	baselen = ft_strlen(base);
-	while (un != 0)
+	while (n != 0)
 	{
-		str[++i] = base[un % baselen];
-		un /= baselen;
+		str[++i] = base[n % baselen];
+		n /= baselen;
 	}
-	if (n < 0)
-		str[++i] = '-';
 	str[digits] = '\0';
 	ft_revtab(str, digits);
 	return (str);

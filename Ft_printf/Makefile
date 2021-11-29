@@ -4,7 +4,7 @@ CFLAGS=		-Wall -Werror -Wextra
 
 NAME=		libftprintf.a
 
-SRCS=		ft_printf.c char_convert.c str_convert.c ptr_convert.c put_percent.c ft_ultoa_base.c dec_convert.c int_convert.c udec_convert.c ft_uitoa.c ft_itoa_base.c low_hex_convert.c
+SRCS=		ft_printf.c char_convert.c str_convert.c ptr_convert.c put_percent.c ft_ultoa_base.c dec_convert.c int_convert.c udec_convert.c ft_uitoa.c low_hex_convert.c upp_hex_convert.c ft_uitoa_base.c
 
 OBJS=		$(SRCS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 12:06:55 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/11/27 12:11:38 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/29 12:19:35 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	print_placeholder(const char *ph, va_list arg)
 	else if (*ph == 'u')
 		len += udec_convert(va_arg(arg, unsigned int));
 	else if (*ph == 'x')
-		len += low_hex_convert(va_arg(arg, int));
+		len += low_hex_convert(va_arg(arg, unsigned int));
+	else if (*ph == 'X')
+		len += upp_hex_convert(va_arg(arg, unsigned int));
 	return (len);
 }

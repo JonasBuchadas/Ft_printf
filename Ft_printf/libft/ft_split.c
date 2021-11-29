@@ -6,7 +6,7 @@
 /*   By: jocaetan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/18 13:35:14 by jocaetan          #+#    #+#             */
-/*   Updated: 2021/10/28 14:28:38 by jocaetan         ###   ########.fr       */
+/*   Updated: 2021/11/29 14:32:08 by jocaetan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ char	**ft_split(char const *s, char c)
 {
 	char	**arr;
 	size_t	i;
-	char	strc[2];
 
 	if (!s)
 		return (NULL);
 	i = -1;
-	strc[0] = c;
-	strc[1] = 0;
 	arr = add_word(NULL, s, 0, 0);
 	if (!arr)
 		return (NULL);
